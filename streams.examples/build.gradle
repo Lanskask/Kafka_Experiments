@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+group = 'streams.examples'
+version = '0.1'
+
+description = """Kafka Streams Quickstart :: Java"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+mainClassName = "myapps.Pipe"
+
+repositories {
+     maven { url "https://repository.apache.org/content/repositories/snapshots/" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    compile group: 'org.apache.kafka', name: 'kafka-streams', version:'1.1.0'
+}
+
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'myapps.Pipe'
+    )
+  }
+}
