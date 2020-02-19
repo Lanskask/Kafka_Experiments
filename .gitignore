@@ -2,3 +2,8 @@ target/
 .idea
 build/
 .gradle/
+gradlew
+gradlew.bat
+
+*.tar.gz
+**/.DS_Store

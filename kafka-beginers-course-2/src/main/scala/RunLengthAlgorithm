@@ -1,0 +1,10 @@
+
+
+
+//myassert("a", "a") myassert("aa", "a2") myassert("ab", "ab") myassert("aaa", "a3") myassert("aab", "a2b") myassert("abc", "abc") myassert("aabbb", "a2b3")
+
+
+
+//myassert("aabbb", "a2b3")
+
+

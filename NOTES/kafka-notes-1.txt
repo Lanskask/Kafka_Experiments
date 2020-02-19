@@ -1,0 +1,51 @@
+kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3
+
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --topic first_topic --describe
+
+
+# Console Producer 
+kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic first_topic acks=all
+
+
+kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic new_topic
+
+
+# Console Consumer 
+kafka-console-consumer.sh  
+
+
+# Console Consumer Group
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --group my-first-app
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --group my-third-app
+
+
+# Groups
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group my-first-app
+
+# =======
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --group my-third-app
+
+
+
+
+# =======
+CLI Options that are good to know
+
+The CLI have many options, but here are the other that are most commonly used:
+
+    Producer with keys
+
+    kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --property parse.key=true --property key.separator=,
+    > key,value
+    > another key,another value
+
+    Consumer with keys
+
+    kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning --property print.key=true --property key.separator=,
+
+
+    # ======
+    kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group my-first-app --reset-offsets --shift-by -2  --execute --topic first_topic	
